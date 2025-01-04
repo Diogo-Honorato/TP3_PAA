@@ -1,0 +1,1 @@
+// local onde sera feito o calculo do tempo e o teste de cada elemento da entrada.
