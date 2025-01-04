@@ -1,5 +1,5 @@
-#ifndef _PLAGICHECKER_H
-#define _PLAGICHECKER_H
+#ifndef _PLAGICHECKER_H_
+#define _PLAGICHECKER_H_
 
 typedef struct PlagiChecker{
 
