@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../Headers/ArquivoIO.h"
+#include "../Headers/LiberarMemoria.h"
 
 PlagiChecker *lerArquivo(FILE *fileInput)
 {
@@ -21,9 +22,7 @@ PlagiChecker *lerArquivo(FILE *fileInput)
 
                 if(fscanf(fileInput,"%s",plagiChecker->string[i]) == EOF){
 
-                    free(plagiChecker->string);
-                    free(plagiChecker->subString);
-                    free(plagiChecker);
+                    liberarMemoria(plagiChecker);
                     return NULL;
                 }
             }
@@ -32,9 +31,7 @@ PlagiChecker *lerArquivo(FILE *fileInput)
 
                 if(fscanf(fileInput,"%s",plagiChecker->subString[j]) == EOF){
                 
-                    free(plagiChecker->string);
-                    free(plagiChecker->subString);
-                    free(plagiChecker);
+                    liberarMemoria(plagiChecker);
                     return NULL;
                 }
             }
