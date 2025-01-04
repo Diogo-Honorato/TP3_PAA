@@ -12,4 +12,8 @@ char **subString;
 
 PlagiChecker *iniciarPlagiChecker(int tamanhoString, int tamanhoSubString);
 
+void liberarMemoria(PlagiChecker *plagiChecker);
+
+void imprimirPlagiChecker(PlagiChecker *plagiChecker);
+
 #endif

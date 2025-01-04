@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../Headers/ArquivoIO.h"
-#include "../Headers/LiberarMemoria.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,20 +30,7 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        printf("%d %d\n", plagiChecker->tamanhoString, plagiChecker->tamanhoSubString);
-
-        for (int i = 0; i < plagiChecker->tamanhoString; i++)
-        {
-
-            printf("%s ", plagiChecker->string[i]);
-        }
-        printf("\n");
-        for (int i = 0; i < plagiChecker->tamanhoSubString; i++)
-        {
-
-            printf("%s ", plagiChecker->subString[i]);
-        }
-        printf("\n\n");
+        imprimirPlagiChecker(plagiChecker);
 
         liberarMemoria(plagiChecker);
     }
