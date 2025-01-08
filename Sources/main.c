@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../Headers/ArquivoIO.h"
+#include "../Headers/ForcaBruta.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +23,6 @@ int main(int argc, char *argv[])
 
     while (!feof(fileInput))
     {
-
         plagiChecker = lerArquivo(fileInput);
 
         if(plagiChecker == NULL){
@@ -30,7 +30,9 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        imprimirPlagiChecker(plagiChecker);
+        int indiceInicio = forcaBruta(plagiChecker->string,plagiChecker->subString,plagiChecker->tamanhoString,plagiChecker->tamanhoSubString);
+
+        saidaArquivoResultado("saidaTeste.txt",indiceInicio);
 
         liberarMemoria(plagiChecker);
     }

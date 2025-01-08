@@ -53,15 +53,22 @@ PlagiChecker *lerArquivo(FILE *fileInput)
     return plagiChecker;
 }
 
-void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, char *resultados)
+void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio)
 {
 
     FILE *fileOutput;
 
-    fileOutput = fopen(CAMINHO_ARQUIVO, "w");
+    fileOutput = fopen(CAMINHO_ARQUIVO, "a");
 
-    fprintf(fileOutput, "%s", resultados);
+    if(indiceInicio >= 0){
 
+        fprintf(fileOutput, "S %d\n",indiceInicio);
+
+    }else{
+
+        fprintf(fileOutput, "N\n");
+    }
+    
     fclose(fileOutput);
 }
 
