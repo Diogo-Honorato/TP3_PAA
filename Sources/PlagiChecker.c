@@ -2,26 +2,26 @@
 #include <stdlib.h>
 #include "../Headers/PlagiChecker.h"
 
-PlagiChecker *iniciarPlagiChecker(int tamanhoString, int tamanhoSubString)
+PlagiChecker *iniciarPlagiChecker(int tamanhoTexto, int tamanhoPadrao)
 {
 
     PlagiChecker *plagiChecker = calloc(1, sizeof *plagiChecker);
 
-    plagiChecker->string = calloc(tamanhoString, sizeof *plagiChecker->string);
-    for (int i = 0; i < tamanhoString; i++)
+    plagiChecker->texto = calloc(tamanhoTexto, sizeof *plagiChecker->texto);
+    for (int i = 0; i < tamanhoTexto; i++)
     {
-        plagiChecker->string[i] = calloc(3, sizeof **plagiChecker->string);
+        plagiChecker->texto[i] = calloc(3, sizeof **plagiChecker->texto);
     }
 
-    plagiChecker->subString = calloc(tamanhoSubString, sizeof *plagiChecker->subString);
-    for (int i = 0; i < tamanhoSubString; i++)
+    plagiChecker->padrao = calloc(tamanhoPadrao, sizeof *plagiChecker->padrao);
+    for (int i = 0; i < tamanhoPadrao; i++)
     {
 
-        plagiChecker->subString[i] = calloc(3, sizeof **plagiChecker->subString);
+        plagiChecker->padrao[i] = calloc(3, sizeof **plagiChecker->padrao);
     }
 
-    plagiChecker->tamanhoString = tamanhoString;
-    plagiChecker->tamanhoSubString = tamanhoSubString;
+    plagiChecker->tamanhoTexto = tamanhoTexto;
+    plagiChecker->tamanhoPadrao = tamanhoPadrao;
 
     return plagiChecker;
 }
@@ -29,37 +29,37 @@ PlagiChecker *iniciarPlagiChecker(int tamanhoString, int tamanhoSubString)
 void liberarMemoria(PlagiChecker *plagiChecker)
 {
 
-    for (int i = 0; i < plagiChecker->tamanhoString; i++)
+    for (int i = 0; i < plagiChecker->tamanhoTexto; i++)
     {
 
-        free(plagiChecker->string[i]);
+        free(plagiChecker->texto[i]);
     }
 
-    for (int i = 0; i < plagiChecker->tamanhoSubString; i++)
+    for (int i = 0; i < plagiChecker->tamanhoPadrao; i++)
     {
 
-        free(plagiChecker->subString[i]);
+        free(plagiChecker->padrao[i]);
     }
 
-    free(plagiChecker->string);
-    free(plagiChecker->subString);
+    free(plagiChecker->texto);
+    free(plagiChecker->padrao);
     free(plagiChecker);
 }
 
 void imprimirPlagiChecker(PlagiChecker *plagiChecker)
 {
-    printf("%d %d\n", plagiChecker->tamanhoString, plagiChecker->tamanhoSubString);
+    printf("%d %d\n", plagiChecker->tamanhoTexto, plagiChecker->tamanhoPadrao);
 
-    for (int i = 0; i < plagiChecker->tamanhoString; i++)
+    for (int i = 0; i < plagiChecker->tamanhoTexto; i++)
     {
 
-        printf("%s ", plagiChecker->string[i]);
+        printf("%s ", plagiChecker->texto[i]);
     }
     printf("\n");
-    for (int i = 0; i < plagiChecker->tamanhoSubString; i++)
+    for (int i = 0; i < plagiChecker->tamanhoPadrao; i++)
     {
 
-        printf("%s ", plagiChecker->subString[i]);
+        printf("%s ", plagiChecker->padrao[i]);
     }
     printf("\n\n");
 }

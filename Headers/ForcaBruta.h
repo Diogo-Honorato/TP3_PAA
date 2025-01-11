@@ -2,7 +2,7 @@
 #define _FORCABRUTA_H_
 
 
-int forcaBruta(char **string, char **subString, int tamanhoString, int tamanhoSubString);
+int forcaBruta(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao);
 
 
 #endif

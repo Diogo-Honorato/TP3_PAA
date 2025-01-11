@@ -3,27 +3,23 @@
 #include <string.h>
 #include "../Headers/ForcaBruta.h"
 
-int forcaBruta(char **string, char **subString, int tamanhoString, int tamanhoSubString){
+int forcaBruta(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao){
 
     int j,k;
 
-    for(int i = 0; i <= (tamanhoString - tamanhoSubString); i++){
+    for(int i = 0; i <= (tamanhoTexto - tamanhoPadrao); i++){
 
         k = i;
         j = 0;
 
-        while (j < tamanhoSubString && strcmp(string[k],subString[j]) == 0)
+        while (j < tamanhoPadrao && strcmp(texto[k],padrao[j]) == 0)
         {
-            printf("string:%s == %s\n",string[k],subString[j]);
-            printf("j:%d\n k:%d\n",j,k);
             j = j + 1;
             k = k + 1;
         }
 
-        printf("j saida:%d\n",j);
-        if( j == tamanhoSubString){
+        if( j == tamanhoPadrao){
 
-            printf("indiciInicio:%d\n",j);
             return i;
         }
     }

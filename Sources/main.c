@@ -29,10 +29,10 @@ int main(int argc, char *argv[])
 
             continue;
         }
+        
+        int indiceInicio = forcaBruta(plagiChecker->texto,plagiChecker->padrao,plagiChecker->tamanhoTexto,plagiChecker->tamanhoPadrao);
 
-        int indiceInicio = forcaBruta(plagiChecker->string,plagiChecker->subString,plagiChecker->tamanhoString,plagiChecker->tamanhoSubString);
-
-        saidaArquivoResultado("saidaTeste.txt",indiceInicio);
+        saidaArquivoResultado("saida.txt",indiceInicio);
 
         liberarMemoria(plagiChecker);
     }

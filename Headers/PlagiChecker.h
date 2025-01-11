@@ -3,14 +3,14 @@
 
 typedef struct PlagiChecker{
 
-int tamanhoString;
-int tamanhoSubString;
-char **string;
-char **subString;
+int tamanhoTexto;
+int tamanhoPadrao;
+char **texto;
+char **padrao;
 
 }PlagiChecker;
 
-PlagiChecker *iniciarPlagiChecker(int tamanhoString, int tamanhoSubString);
+PlagiChecker *iniciarPlagiChecker(int tamanhoTexto, int tamanhoPadrao);
 
 void liberarMemoria(PlagiChecker *plagiChecker);
 

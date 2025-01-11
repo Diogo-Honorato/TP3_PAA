@@ -6,30 +6,30 @@
 PlagiChecker *lerArquivo(FILE *fileInput)
 {
 
-    int tamString;
-    int tamSubString;
+    int tamTexto;
+    int tamPadrao;
     PlagiChecker *plagiChecker = NULL;
 
-    if (fscanf(fileInput, "%d %d ", &tamString, &tamSubString) == 2)
+    if (fscanf(fileInput, "%d %d ", &tamTexto, &tamPadrao) == 2)
     {
 
-        if (tamString && tamSubString)
+        if (tamTexto && tamPadrao)
         {
 
-            plagiChecker = iniciarPlagiChecker(tamString,tamSubString);
+            plagiChecker = iniciarPlagiChecker(tamTexto,tamPadrao);
 
-            for(int i = 0; i < tamString; i++){
+            for(int i = 0; i < tamTexto; i++){
 
-                if(fscanf(fileInput,"%s",plagiChecker->string[i]) == EOF){
+                if(fscanf(fileInput,"%s",plagiChecker->texto[i]) == EOF){
 
                     liberarMemoria(plagiChecker);
                     return NULL;
                 }
             }
             
-            for(int j = 0; j < tamSubString; j++){
+            for(int j = 0; j < tamPadrao; j++){
 
-                if(fscanf(fileInput,"%s",plagiChecker->subString[j]) == EOF){
+                if(fscanf(fileInput,"%s",plagiChecker->padrao[j]) == EOF){
                 
                     liberarMemoria(plagiChecker);
                     return NULL;
