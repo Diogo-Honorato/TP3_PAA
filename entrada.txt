@@ -20,6 +20,6 @@ C Db D G A
 C Db D G A
 C Db D G A
 5 5
-C Db D G A
-C Db D G G
+A A A A A
+A A A A B
 0 0
