@@ -13,4 +13,7 @@ D F# A
 12 2
 C Db D Eb E F Gb G A A A F#
 A F#
+3 5
+C Db D
+A F# B G A
 0 0
