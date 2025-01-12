@@ -15,5 +15,11 @@ C Db D Eb E F Gb G A A A F#
 A F#
 3 5
 C Db D
-A F# B G A
+C Db D G A
+5 5
+C Db D G A
+C Db D G A
+5 5
+C Db D G A
+C Db D G G
 0 0

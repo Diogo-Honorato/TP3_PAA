@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../Headers/ArquivoIO.h"
-#include "../Headers/ForcaBruta.h"
+#include "../Headers/KMP.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             continue;
         }
         
-        int indiceInicio = forcaBruta(plagiChecker->texto,plagiChecker->padrao,plagiChecker->tamanhoTexto,plagiChecker->tamanhoPadrao);
+        int indiceInicio = kmp(plagiChecker->texto,plagiChecker->padrao,plagiChecker->tamanhoTexto,plagiChecker->tamanhoPadrao);
 
         saidaArquivoResultado("saida.txt",indiceInicio);
 
