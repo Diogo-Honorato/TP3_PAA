@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../Headers/ArquivoIO.h"
-#include "../Headers/KMP.h"
+#include "../Headers/Benchmark.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
     }
 
     const char *CAMINHO_ARQUIVO_INPUT = argv[1];
+    const int algoritmo = atoi(argv[2]);
 
     PlagiChecker *plagiChecker = NULL;
 
@@ -25,19 +27,18 @@ int main(int argc, char *argv[])
     {
         plagiChecker = lerArquivo(fileInput);
 
-        if(plagiChecker == NULL){
+        if (plagiChecker == NULL)
+        {
 
             continue;
         }
-        
-        int indiceInicio = kmp(plagiChecker->texto,plagiChecker->padrao,plagiChecker->tamanhoTexto,plagiChecker->tamanhoPadrao);
 
-        saidaArquivoResultado("saida.txt",indiceInicio);
+        benchmark(algoritmo, plagiChecker->texto, plagiChecker->padrao, plagiChecker->tamanhoTexto, plagiChecker->tamanhoPadrao);
 
         liberarMemoria(plagiChecker);
     }
 
     fclose(fileInput);
-    
+
     return 0;
 }

@@ -5,32 +5,38 @@
 
 int kmp(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
 {
-    if(tamanhoTexto < tamanhoPadrao){
+    if (tamanhoTexto < tamanhoPadrao)
+    {
 
         return -1;
     }
 
-    int *tabela = preProcessamento(padrao,tamanhoPadrao);
+    int *tabela = preProcessamento(padrao, tamanhoPadrao);
 
     int i = 0;
     int j = 0;
 
     while (i < tamanhoTexto && j < tamanhoPadrao)
     {
-        if(!strcmp(texto[i],padrao[j])){
+        if (!strcmp(texto[i], padrao[j]))
+        {
 
             i++;
             j++;
-        }else if (j > 0)
+        }
+        else if (j > 0)
         {
             j = tabela[j - 1];
-        }else{
+        }
+        else
+        {
 
             i++;
         }
     }
-    
-    if(j == tamanhoPadrao){
+
+    if (j == tamanhoPadrao)
+    {
 
         free(tabela);
 

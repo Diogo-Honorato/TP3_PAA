@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "../Headers/ArquivoIO.h"
 
-
 PlagiChecker *lerArquivo(FILE *fileInput)
 {
 
@@ -16,21 +15,25 @@ PlagiChecker *lerArquivo(FILE *fileInput)
         if (tamTexto && tamPadrao)
         {
 
-            plagiChecker = iniciarPlagiChecker(tamTexto,tamPadrao);
+            plagiChecker = iniciarPlagiChecker(tamTexto, tamPadrao);
 
-            for(int i = 0; i < tamTexto; i++){
+            for (int i = 0; i < tamTexto; i++)
+            {
 
-                if(fscanf(fileInput,"%s",plagiChecker->texto[i]) == EOF){
+                if (fscanf(fileInput, "%s", plagiChecker->texto[i]) == EOF)
+                {
 
                     liberarMemoria(plagiChecker);
                     return NULL;
                 }
             }
-            
-            for(int j = 0; j < tamPadrao; j++){
 
-                if(fscanf(fileInput,"%s",plagiChecker->padrao[j]) == EOF){
-                
+            for (int j = 0; j < tamPadrao; j++)
+            {
+
+                if (fscanf(fileInput, "%s", plagiChecker->padrao[j]) == EOF)
+                {
+
                     liberarMemoria(plagiChecker);
                     return NULL;
                 }
@@ -60,15 +63,17 @@ void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio)
 
     fileOutput = fopen(CAMINHO_ARQUIVO, "a");
 
-    if(indiceInicio >= 0){
+    if (indiceInicio >= 0)
+    {
 
-        fprintf(fileOutput, "S %d\n",indiceInicio);
-
-    }else{
+        fprintf(fileOutput, "S %d\n", indiceInicio);
+    }
+    else
+    {
 
         fprintf(fileOutput, "N\n");
     }
-    
+
     fclose(fileOutput);
 }
 
@@ -79,17 +84,16 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int numeroTeste, double tem
 
     fileOutput = fopen(CAMINHO_ARQUIVO, "w");
 
+    fprintf(fileOutput, "\n---Tempo de execucao do teste: %d---\n", numeroTeste);
+    fprintf(fileOutput, "\nTempo em microssegunods:\n");
+    fprintf(fileOutput, "Tempo Usuario = %.3f microssegundos\n", tempoUsuario);
+    fprintf(fileOutput, "Tempo Sistema = %.3f microssegundos\n", tempoSistema);
+    fprintf(fileOutput, "Tempo rusage = %.3f microssegundos\n", tempoRuUsage);
+    fprintf(fileOutput, "Tempo gettimeofday = %.3f microssegundos\n", tempoGetTimeofDay);
 
-    fprintf(fileOutput,"\n---Tempo de execucao do teste: %d---\n",numeroTeste);
-    fprintf(fileOutput,"\nTempo em microssegunods:\n");
-    fprintf(fileOutput,"Tempo Usuario = %.3f microssegundos\n", tempoUsuario);
-    fprintf(fileOutput,"Tempo Sistema = %.3f microssegundos\n", tempoSistema);
-    fprintf(fileOutput,"Tempo rusage = %.3f microssegundos\n", tempoRuUsage);
-    fprintf(fileOutput,"Tempo gettimeofday = %.3f microssegundos\n", tempoGetTimeofDay);
-
-    fprintf(fileOutput,"\nTempo em segundos:\n");
-    fprintf(fileOutput,"Tempo Usuario = %.3f segundos\n", tempoUsuario / 1000000);
-    fprintf(fileOutput,"Tempo Sistema = %.3f segundos\n", tempoSistema / 1000000);
-    fprintf(fileOutput,"Tempo rusage = %.3f segundos\n", tempoRuUsage / 1000000);
-    fprintf(fileOutput,"Tempo gettimeofday = %.3f segundos\n\n\n", tempoGetTimeofDay / 1000000);
+    fprintf(fileOutput, "\nTempo em segundos:\n");
+    fprintf(fileOutput, "Tempo Usuario = %.3f segundos\n", tempoUsuario / 1000000);
+    fprintf(fileOutput, "Tempo Sistema = %.3f segundos\n", tempoSistema / 1000000);
+    fprintf(fileOutput, "Tempo rusage = %.3f segundos\n", tempoRuUsage / 1000000);
+    fprintf(fileOutput, "Tempo gettimeofday = %.3f segundos\n\n\n", tempoGetTimeofDay / 1000000);
 }
