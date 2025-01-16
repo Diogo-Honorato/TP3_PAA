@@ -24,4 +24,10 @@ HashMap *iniciarHashMap(int totalDados);
 
 int hashing(char *chave, int hashSize);
 
+int inserirDados(HashMap *map, char *chave, __int128_t valor);
+
+int buscarChave(HashMap *map, char *chave);
+
+void liberarHashMap(HashMap *map);
+
 #endif

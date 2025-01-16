@@ -93,7 +93,7 @@ int inserirDados(HashMap *map, char *chave, __int128_t valor){
             return 0;
         }
         
-        indice++;
+        indice = (indice + 1) % map->hashSize;
     }
 
     map->array[indice].chave = chave;
@@ -102,3 +102,21 @@ int inserirDados(HashMap *map, char *chave, __int128_t valor){
     return 0;
 }
 
+int buscarChave(HashMap *map, char *chave){
+
+    int indice = hashing(chave,map->hashSize);
+
+    while (strcmp(map->array[indice].chave,chave) != 0)
+    {
+
+        indice = (indice + 1) % map->hashSize;
+    }
+
+    return indice;
+}
+
+void liberarHashMap(HashMap *map){
+
+    free(map->array);
+    free(map);
+}
