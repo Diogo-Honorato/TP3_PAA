@@ -4,7 +4,7 @@
 typedef struct Item{
 
     char *chave;
-    __int128_t item;
+    __int128_t valor;
 
 }Item;
 
