@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "../Headers/SAE.h"
 
 bool primo(int num){
@@ -79,3 +80,25 @@ int hashing(char *chave, int hashSize){
 
     return indice % hashSize;
 }
+
+int inserirDados(HashMap *map, char *chave, __int128_t valor){
+
+    int indice = hashing(chave,map->hashSize);
+
+    while (map->array[indice].chave != NULL)
+    {
+        if (strcmp(map->array[indice].chave,chave) == 0)
+        {
+            map->array[indice].valor = valor;
+            return 0;
+        }
+        
+        indice++;
+    }
+
+    map->array[indice].chave = chave;
+    map->array[indice].valor = valor;
+
+    return 0;
+}
+
