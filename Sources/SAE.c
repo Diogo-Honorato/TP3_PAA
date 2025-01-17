@@ -169,6 +169,8 @@ int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadr
 
         if (matching & (__int128_t)1 << (tamanhoPadrao - 1)) {
 
+            liberarHashMap(bitMask);
+            
             return i - tamanhoPadrao + 1;
         }
     }
