@@ -73,7 +73,7 @@ void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio)
 
         fprintf(fileOutput, "N\n");
     }
-    printf("\nArquivo de resultados dos testes gerado com sucesso no caminho: %s\n",CAMINHO_ARQUIVO);
+    
     fclose(fileOutput);
 }
 
@@ -124,5 +124,5 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, double tempo
     fprintf(fileOutput, "Tempo rusage = %.3f segundos\n", tempoRuUsage / 1000000);
     fprintf(fileOutput, "Tempo gettimeofday = %.3f segundos\n\n\n", tempoGetTimeofDay / 1000000);
 
-    printf("\nArquivo de benchmark gerado com sucesso no caminho: %s!\n",CAMINHO_ARQUIVO);;
+    
 }

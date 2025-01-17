@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     }
 
     const char *CAMINHO_ARQUIVO_INPUT = argv[1];
+    const char *CAMINHO_ARQUIVO_SAIDA = "Resultados/saida.txt";
+    const char *CAMINHO_ARQUIVO_BENCHMARK = "Resultados/benchmark.txt";
     const int algoritmo = atoi(argv[2]);
 
     PlagiChecker *plagiChecker = NULL;
@@ -23,17 +25,20 @@ int main(int argc, char *argv[])
     FILE *fileSaida;
     FILE *fileBenchmark;
 
-    fileSaida = fopen("Resultados/saida.txt","w");
+    fileSaida = fopen(CAMINHO_ARQUIVO_SAIDA,"w");
     if (!fileSaida) {
         printf("Erro ao abrir o arquivo de saída.\n");
         return 1;
     }
 
-    fileBenchmark = fopen("Resultados/benchmark.txt","w");
+    fileBenchmark = fopen(CAMINHO_ARQUIVO_BENCHMARK,"w");
     if (!fileBenchmark) {
         printf("Erro ao abrir o arquivo de benchmarks.\n");
         return 1;
     }
+    fclose(fileSaida);
+    fclose(fileBenchmark);
+
 
     fileInput = fopen(CAMINHO_ARQUIVO_INPUT, "r");
     if (!fileInput) {
@@ -56,6 +61,8 @@ int main(int argc, char *argv[])
         liberarMemoria(plagiChecker);
     }
 
+    printf("\nArquivo de resultados dos testes gerado com sucesso no caminho: %s\n",CAMINHO_ARQUIVO_SAIDA);
+    printf("\nArquivo de benchmark gerado com sucesso no caminho: %s\n\n",CAMINHO_ARQUIVO_BENCHMARK);
     fclose(fileInput);
 
     return 0;
