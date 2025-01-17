@@ -30,4 +30,6 @@ int buscarChave(HashMap *map, char *chave);
 
 void liberarHashMap(HashMap *map);
 
+int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao);
+
 #endif

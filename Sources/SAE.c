@@ -63,7 +63,7 @@ HashMap *iniciarHashMap(int totalDados){
         map->array[i].chave = NULL;
         map->array[i].valor = (__int128_t)0;
     }
-
+    
     return map;
 }
 
@@ -90,7 +90,7 @@ int inserirDados(HashMap *map, char *chave, __int128_t valor){
         if (strcmp(map->array[indice].chave,chave) == 0)
         {
             map->array[indice].valor = valor;
-            return 0;
+            return indice;
         }
         
         indice = (indice + 1) % map->hashSize;
@@ -99,17 +99,24 @@ int inserirDados(HashMap *map, char *chave, __int128_t valor){
     map->array[indice].chave = chave;
     map->array[indice].valor = valor;
 
-    return 0;
+    return indice;
 }
 
 int buscarChave(HashMap *map, char *chave){
 
     int indice = hashing(chave,map->hashSize);
+    int count = 0;
 
-    while (strcmp(map->array[indice].chave,chave) != 0)
+    while (map->array[indice].chave != NULL && strcmp(map->array[indice].chave,chave) != 0)
     {
-
         indice = (indice + 1) % map->hashSize;
+
+        if((count + 1) == map->hashSize){
+
+            return -1;
+        }
+
+        count++;
     }
 
     return indice;
@@ -119,4 +126,54 @@ void liberarHashMap(HashMap *map){
 
     free(map->array);
     free(map);
+}
+
+int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao) {
+
+    if(tamanhoTexto < tamanhoPadrao){
+
+        return -1;
+    }
+    
+    int indice;
+    __int128_t matching = 0;
+    HashMap *bitMask = iniciarHashMap(tamanhoPadrao);
+    
+    //gerando a mascara de bits.
+    for(int i = 0; i < tamanhoPadrao; i++){
+
+        inserirDados(bitMask,padrao[i],(__int128_t)0);
+    }
+
+    
+    for (int i = 0; i < tamanhoPadrao; i++) {
+
+        bitMask->array[buscarChave(bitMask,padrao[i])].valor |= (__int128_t)1 << i;
+    }
+
+
+
+    //Shift-And exato
+    for (int i = 0; i < tamanhoTexto; i++) {
+
+        indice = buscarChave(bitMask,texto[i]);
+
+        if(indice == -1){
+
+            matching = ((matching << 1) | 1) & (__int128_t)0;
+        }
+        else{
+
+            matching = ((matching << 1) | 1) & bitMask->array[indice].valor;
+        }
+
+        if (matching & (__int128_t)1 << (tamanhoPadrao - 1)) {
+
+            return i - tamanhoPadrao + 1;
+        }
+    }
+
+    liberarHashMap(bitMask);
+    
+    return -1;
 }

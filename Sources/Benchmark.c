@@ -5,6 +5,7 @@
 #include "../Headers/ArquivoIO.h"
 #include "../Headers/ForcaBruta.h"
 #include "../Headers/KMP.h"
+#include "../Headers/SAE.h"
 #include "../Headers/Benchmark.h"
 #include "../Headers/GerenciarTempo.h"
 
@@ -25,6 +26,11 @@ void benchmark(const int algoritmo, char **texto, char **padrao, int tamTexto, i
         resultado = kmp(texto, padrao, tamTexto, tamPadrao);
         break;
 
+    case 4:
+
+        resultado = shiftAndExato(texto,padrao,tamTexto,tamPadrao);
+        break;
+        
     default:
         perror("Nenhum algoritmo encontrado com essa tag!");
         break;
