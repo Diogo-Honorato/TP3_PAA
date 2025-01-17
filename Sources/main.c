@@ -20,8 +20,26 @@ int main(int argc, char *argv[])
     PlagiChecker *plagiChecker = NULL;
 
     FILE *fileInput;
+    FILE *fileSaida;
+    FILE *fileBenchmark;
+
+    fileSaida = fopen("Resultados/saida.txt","w");
+    if (!fileSaida) {
+        printf("Erro ao abrir o arquivo de saída.\n");
+        return 1;
+    }
+
+    fileBenchmark = fopen("Resultados/benchmark.txt","w");
+    if (!fileBenchmark) {
+        printf("Erro ao abrir o arquivo de benchmarks.\n");
+        return 1;
+    }
 
     fileInput = fopen(CAMINHO_ARQUIVO_INPUT, "r");
+    if (!fileInput) {
+        printf("Erro ao abrir o arquivo de testes.\n");
+        return 1;
+    }
 
     while (!feof(fileInput))
     {
