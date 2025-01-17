@@ -13,13 +13,12 @@ ARG1 = 1
 ARG2 = 2
 ARG3 = 3
 ARG4 = 4
-ARG5 = saida.txt
 
 # Diretórios
 HEADER_DIR = Headers
 SRC_DIR = Sources
 OBJ_DIR = Objects
-
+RESULT_DIR = Resultados
 
 # Obter automaticamente todos os arquivos .c no diretório source
 SRCS = $(wildcard $(SRC_DIR)/*.c)
@@ -29,22 +28,26 @@ SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 
-# Regra para compilar todos os arquivos .o a partir dos arquivos .c
-all: $(EXECUTABLE)
+# Regra padrão para compilar o programa
+all: dirs $(EXECUTABLE)
 
+# Regra para gerar o executável a partir dos arquivos .o
 $(EXECUTABLE): $(OBJS)
 	@$(COMPILADORC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-
-# Regra para criar diretórios e compilar cada arquivo .c em um arquivo .o correspondente
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | obj_dirs
+# Regra para compilar arquivos .c em arquivos .o
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | dirs
 	@$(COMPILADORC) $(CFLAGS) -I $(HEADER_DIR) -c $< -o $@
 
+# Criação dos diretórios necessários
+dirs: obj_dirs result_dirs
 
-# Criação dos diretórios necessários para armazenar os arquivos .o
 obj_dirs:
 	@mkdir -p $(OBJ_DIR)
 
+
+result_dirs:
+	@mkdir -p $(RESULT_DIR)
 
 # Para rodar com valgrind e verificar vazamentos de memória
 leak_1: $(EXECUTABLE)
@@ -62,7 +65,7 @@ leak_4: $(EXECUTABLE)
 
 # Limpar arquivos objeto e o executável
 clean:
-	@rm -rf $(OBJ_DIR) $(EXECUTABLE) $(ARG5)
+	@rm -rf $(OBJ_DIR) $(EXECUTABLE) $(RESULT_DIR)
 
 
 .PHONY: all leak_1 leak_2 leak_3 leak_4 clean

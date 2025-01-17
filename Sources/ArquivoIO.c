@@ -77,14 +77,41 @@ void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio)
     fclose(fileOutput);
 }
 
-void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int numeroTeste, double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay)
+void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay)
 {
 
     FILE *fileOutput;
 
-    fileOutput = fopen(CAMINHO_ARQUIVO, "w");
+    fileOutput = fopen(CAMINHO_ARQUIVO, "a");
 
-    fprintf(fileOutput, "\n---Tempo de execucao do teste: %d---\n", numeroTeste);
+    switch (algoritmo)
+    {
+    case 1:
+    
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo Força Bruta---\n");    
+        break;
+
+    case 2:
+        
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo KMP---\n");
+        break;
+
+    case 3:
+        
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo BMH---\n");
+        break;
+
+    case 4:
+    
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo Shift-And exato---\n");
+        break;
+
+    default:
+
+        break;
+    }
+
+    
     fprintf(fileOutput, "\nTempo em microssegunods:\n");
     fprintf(fileOutput, "Tempo Usuario = %.3f microssegundos\n", tempoUsuario);
     fprintf(fileOutput, "Tempo Sistema = %.3f microssegundos\n", tempoSistema);

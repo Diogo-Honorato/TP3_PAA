@@ -7,6 +7,6 @@ PlagiChecker *lerArquivo(FILE *fileInput);
 
 void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio);
 
-void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int numeroTeste, double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay);
+void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay);
 
 #endif

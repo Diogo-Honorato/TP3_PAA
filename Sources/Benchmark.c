@@ -11,24 +11,51 @@
 
 void benchmark(const int algoritmo, char **texto, char **padrao, int tamTexto, int tamPadrao)
 {
+    struct timeval tempoInicio, tempoFim, tempoDiferenca;
+
+    double tempoUsuarioInicio, tempoUsuarioFim, tempoSistemaInicio, tempoSistemaFim;
+    
+    double tempoUsuarioCompleto, tempoSistemaCompleto, tempoGetTimeofDay, tempoRuUsage;
 
     int resultado = -1;
 
     switch (algoritmo)
     {
     case 1:
+        // Obtendo o tempo de início do sistema juntamente com o do usuario
+        getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
+        gettimeofday(&tempoInicio, NULL);
 
         resultado = forcaBruta(texto, padrao, tamTexto, tamPadrao);
+
+        // Obtém o tempo do fim da execução.
+        getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
+        gettimeofday(&tempoFim, NULL);
+        
         break;
 
     case 2:
+    
+        getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
+        gettimeofday(&tempoInicio, NULL);
 
         resultado = kmp(texto, padrao, tamTexto, tamPadrao);
+        
+        getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
+        gettimeofday(&tempoFim, NULL);
+
         break;
 
     case 4:
+        
+        getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
+        gettimeofday(&tempoInicio, NULL);
 
         resultado = shiftAndExato(texto,padrao,tamTexto,tamPadrao);
+        
+        getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
+        gettimeofday(&tempoFim, NULL);
+
         break;
         
     default:
@@ -36,5 +63,14 @@ void benchmark(const int algoritmo, char **texto, char **padrao, int tamTexto, i
         break;
     }
 
-    saidaArquivoResultado("saida.txt", resultado);
+    timeval_subtract(&tempoDiferenca, &tempoFim, &tempoInicio);
+
+    tempoGetTimeofDay = joinTimes(tempoDiferenca.tv_sec, tempoDiferenca.tv_usec);
+    tempoUsuarioCompleto = tempoUsuarioFim - tempoUsuarioInicio;
+    tempoSistemaCompleto = tempoSistemaFim - tempoSistemaInicio;
+    tempoRuUsage = tempoUsuarioCompleto + tempoSistemaCompleto;
+
+    saidaArquivoTempos("Resultados/benchmark.txt",algoritmo,tempoUsuarioCompleto,tempoSistemaCompleto,tempoRuUsage,tempoGetTimeofDay);
+
+    saidaArquivoResultado("Resultados/saida.txt", resultado);
 }
