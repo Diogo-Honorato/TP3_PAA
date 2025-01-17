@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
         }
 
         benchmark(algoritmo, numTeste, plagiChecker->texto, plagiChecker->padrao, plagiChecker->tamanhoTexto, plagiChecker->tamanhoPadrao);
-
+        
         liberarMemoria(plagiChecker);
         numTeste++;
     }

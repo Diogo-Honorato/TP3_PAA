@@ -112,7 +112,7 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste
     }
 
     
-    fprintf(fileOutput, "\nTempo em microssegunods:\n");
+    fprintf(fileOutput, "\nTempo em microssegundos:\n");
     fprintf(fileOutput, "Tempo Usuario = %.3f microssegundos\n", tempoUsuario);
     fprintf(fileOutput, "Tempo Sistema = %.3f microssegundos\n", tempoSistema);
     fprintf(fileOutput, "Tempo rusage = %.3f microssegundos\n", tempoRuUsage);
