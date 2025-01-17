@@ -77,7 +77,7 @@ void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio)
     fclose(fileOutput);
 }
 
-void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay)
+void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste,double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay)
 {
 
     FILE *fileOutput;
@@ -88,22 +88,22 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, double tempo
     {
     case 1:
     
-        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo Força Bruta---\n");    
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo Força Bruta, teste: %d---\n",numTeste);    
         break;
 
     case 2:
         
-        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo KMP---\n");
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo KMP, teste: %d---\n",numTeste);
         break;
 
     case 3:
         
-        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo BMH---\n");
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo BMH, teste: %d---\n",numTeste);
         break;
 
     case 4:
     
-        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo Shift-And exato---\n");
+        fprintf(fileOutput, "\n---Tempo de execucao do algoritmo Shift-And Exato, teste: %d---\n",numTeste);
         break;
 
     default:

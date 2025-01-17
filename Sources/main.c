@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     const int algoritmo = atoi(argv[2]);
 
     PlagiChecker *plagiChecker = NULL;
+    int numTeste = 1;
 
     FILE *fileInput;
     FILE *fileSaida;
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+
     while (!feof(fileInput))
     {
         plagiChecker = lerArquivo(fileInput);
@@ -56,9 +58,10 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        benchmark(algoritmo, plagiChecker->texto, plagiChecker->padrao, plagiChecker->tamanhoTexto, plagiChecker->tamanhoPadrao);
+        benchmark(algoritmo, numTeste, plagiChecker->texto, plagiChecker->padrao, plagiChecker->tamanhoTexto, plagiChecker->tamanhoPadrao);
 
         liberarMemoria(plagiChecker);
+        numTeste++;
     }
 
     printf("\nArquivo de resultados dos testes gerado com sucesso no caminho: %s\n",CAMINHO_ARQUIVO_SAIDA);

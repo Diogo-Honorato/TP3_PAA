@@ -9,7 +9,7 @@
 #include "../Headers/Benchmark.h"
 #include "../Headers/GerenciarTempo.h"
 
-void benchmark(const int algoritmo, char **texto, char **padrao, int tamTexto, int tamPadrao)
+void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, int tamTexto, int tamPadrao)
 {
     struct timeval tempoInicio, tempoFim, tempoDiferenca;
 
@@ -70,7 +70,7 @@ void benchmark(const int algoritmo, char **texto, char **padrao, int tamTexto, i
     tempoSistemaCompleto = tempoSistemaFim - tempoSistemaInicio;
     tempoRuUsage = tempoUsuarioCompleto + tempoSistemaCompleto;
 
-    saidaArquivoTempos("Resultados/benchmark.txt",algoritmo,tempoUsuarioCompleto,tempoSistemaCompleto,tempoRuUsage,tempoGetTimeofDay);
+    saidaArquivoTempos("Resultados/benchmark.txt",algoritmo,numTeste,tempoUsuarioCompleto,tempoSistemaCompleto,tempoRuUsage,tempoGetTimeofDay);
 
     saidaArquivoResultado("Resultados/saida.txt", resultado);
 }
