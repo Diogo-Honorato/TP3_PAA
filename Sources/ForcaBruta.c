@@ -27,10 +27,9 @@ int forcaBruta(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
 
         if (j == tamanhoPadrao)
         {
-            printf("\n\n---entrou força bruta encontrou padrao---\n\n");
             return i;
         }
     }
-    printf("\n\n---entrou força bruta nao encontrou padrao---");
+
     return -1;
 }
