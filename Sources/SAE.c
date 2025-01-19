@@ -156,7 +156,12 @@ int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadr
 
         return -1;
     }
-    
+
+    if (tamanhoPadrao > sizeof(__int128_t) * 8) {
+        printf("Erro: Padrão muito longo para o tipo __int128_t.\n");
+        return -1;
+    }
+
     int indice;
     
     __int128_t matching = (__int128_t)(0);
