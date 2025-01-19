@@ -122,7 +122,7 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste
     fprintf(fileOutput, "Tempo Usuario = %.3f segundos\n", tempoUsuario / 1000000);
     fprintf(fileOutput, "Tempo Sistema = %.3f segundos\n", tempoSistema / 1000000);
     fprintf(fileOutput, "Tempo rusage = %.3f segundos\n", tempoRuUsage / 1000000);
-    fprintf(fileOutput, "Tempo gettimeofday = %.3f segundos\n\n\n", tempoGetTimeofDay / 1000000);
+    fprintf(fileOutput, "Tempo gettimeofday = %.3f segundos\n\n\n", tempoGetTimeofDay / 1000000); 
 
-    
+    fclose(fileOutput);
 }

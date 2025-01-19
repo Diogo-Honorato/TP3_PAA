@@ -67,6 +67,17 @@ HashMap *iniciarHashMap(int totalDados){
     return map;
 }
 
+char *strdup(const char *s) {
+
+    char *dup = malloc(strlen(s) + 1);
+
+    if (dup != NULL) {
+        strcpy(dup, s);
+    }
+    
+    return dup;
+}
+
 int hashing(char *chave, int hashSize){
 
     int indice = 0;
@@ -96,7 +107,7 @@ int inserirDados(HashMap *map, char *chave, __int128_t valor){
         indice = (indice + 1) % map->hashSize;
     }
 
-    map->array[indice].chave = chave;
+    map->array[indice].chave = strdup(chave);
     map->array[indice].valor = valor;
 
     return indice;
@@ -107,7 +118,12 @@ int buscarChave(HashMap *map, char *chave){
     int indice = hashing(chave,map->hashSize);
     int count = 0;
 
-    while (map->array[indice].chave != NULL && strcmp(map->array[indice].chave,chave) != 0)
+    if(map->array[indice].chave == NULL){
+
+        return -1;
+    }
+
+    while (strcmp(map->array[indice].chave,chave) != 0)
     {
         indice = (indice + 1) % map->hashSize;
 
@@ -124,6 +140,12 @@ int buscarChave(HashMap *map, char *chave){
 
 void liberarHashMap(HashMap *map){
 
+    for (int i = 0; i < map->hashSize; i++) {
+
+        if (map->array[i].chave != NULL) {
+            free(map->array[i].chave);
+        }
+    }
     free(map->array);
     free(map);
 }
@@ -136,46 +158,48 @@ int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadr
     }
     
     int indice;
-    __int128_t matching = 0;
-    HashMap *bitMask = iniciarHashMap(tamanhoPadrao);
     
+    __int128_t matching = (__int128_t)(0);
+
+    HashMap *bitMasks = iniciarHashMap(133);
+
     //gerando a mascara de bits.
     for(int i = 0; i < tamanhoPadrao; i++){
 
-        inserirDados(bitMask,padrao[i],(__int128_t)0);
+        inserirDados(bitMasks,padrao[i],(__int128_t)0);
     }
 
     
-    for (int i = 0; i < tamanhoPadrao; i++) {
+    for (int i = 0; i < tamanhoPadrao; i++){
 
-        bitMask->array[buscarChave(bitMask,padrao[i])].valor |= (__int128_t)1 << i;
+        bitMasks->array[buscarChave(bitMasks,padrao[i])].valor |= ((__int128_t)(1) << i);
     }
-
-
 
     //Shift-And exato
     for (int i = 0; i < tamanhoTexto; i++) {
 
-        indice = buscarChave(bitMask,texto[i]);
+        indice = buscarChave(bitMasks,texto[i]);
 
         if(indice == -1){
 
-            matching = ((matching << 1) | 1) & (__int128_t)0;
+            matching = (matching << 1) | 1;
+            matching &= (__int128_t)(0);          
         }
         else{
 
-            matching = ((matching << 1) | 1) & bitMask->array[indice].valor;
+            matching = (matching << 1) | 1;         
+            matching &= bitMasks->array[indice].valor;
         }
 
-        if (matching & (__int128_t)1 << (tamanhoPadrao - 1)) {
+        if ((matching & ((__int128_t)(1) << (tamanhoPadrao - 1)))) {
 
-            liberarHashMap(bitMask);
+            liberarHashMap(bitMasks);
             
             return i - tamanhoPadrao + 1;
         }
     }
 
-    liberarHashMap(bitMask);
+    liberarHashMap(bitMasks);
     
     return -1;
 }

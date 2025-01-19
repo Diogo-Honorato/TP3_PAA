@@ -22,6 +22,8 @@ int hashSize(int tamDados);
 
 HashMap *iniciarHashMap(int totalDados);
 
+char *strdup(const char *s);
+
 int hashing(char *chave, int hashSize);
 
 int inserirDados(HashMap *map, char *chave, __int128_t valor);
