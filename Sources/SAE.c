@@ -4,6 +4,8 @@
 #include <string.h>
 #include "../Headers/SAE.h"
 
+#define TAM_ALFABETO 98
+
 bool primo(int num){
 
     if (num <= 1){
@@ -78,18 +80,14 @@ char *strdup(const char *s) {
     return dup;
 }
 
-int hashing(char *chave, int hashSize){
+int hashing(const char *chave, int hashSize) {
 
-    int indice = 0;
-
-    while(*chave){
-
-        indice = indice + *chave;
-
+    unsigned long hash = 5381;
+    while (*chave) {
+        hash = ((hash << 5) + hash) + *chave;
         chave++;
     }
-
-    return indice % hashSize;
+    return hash % hashSize;
 }
 
 int inserirDados(HashMap *map, char *chave, __int128_t valor){
@@ -113,29 +111,16 @@ int inserirDados(HashMap *map, char *chave, __int128_t valor){
     return indice;
 }
 
-int buscarChave(HashMap *map, char *chave){
+__int128_t buscarMascara(HashMap *map, char *chave) {
 
-    int indice = hashing(chave,map->hashSize);
-    int count = 0;
-
-    if(map->array[indice].chave == NULL){
-
-        return -1;
-    }
-
-    while (strcmp(map->array[indice].chave,chave) != 0)
-    {
-        indice = (indice + 1) % map->hashSize;
-
-        if((count + 1) == map->hashSize){
-
-            return -1;
+    int indice = hashing(chave, map->hashSize);
+    while (map->array[indice].chave != NULL) {
+        if (strcmp(map->array[indice].chave, chave) == 0) {
+            return map->array[indice].valor;
         }
-
-        count++;
+        indice = (indice + 1) % map->hashSize;
     }
-
-    return indice;
+    return 0;
 }
 
 void liberarHashMap(HashMap *map){
@@ -150,61 +135,49 @@ void liberarHashMap(HashMap *map){
     free(map);
 }
 
-int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao) {
-
-    if(tamanhoTexto < tamanhoPadrao){
-
-        return -1;
-    }
-
-    if (tamanhoPadrao > sizeof(__int128_t) * 8) {
-        printf("Erro: Padrão muito longo para o tipo __int128_t.\n");
-        return -1;
-    }
-
-    int indice;
+HashMap* criarBitMasks(char **padrao, int tamanhoPadrao) {
     
-    __int128_t matching = (__int128_t)(0);
+    HashMap *bitMasks = iniciarHashMap(TAM_ALFABETO);
 
-    HashMap *bitMasks = iniciarHashMap(133);
+    for (int i = 0; i < tamanhoPadrao; i++) {
 
-    //gerando a mascara de bits.
-    for(int i = 0; i < tamanhoPadrao; i++){
+        __int128_t mascara = buscarMascara(bitMasks, padrao[i]);
 
-        inserirDados(bitMasks,padrao[i],(__int128_t)0);
+        if (mascara == 0) { 
+
+            mascara = (__int128_t)1 << i;
+
+        } else {
+
+            mascara |= (__int128_t)1 << i;
+        }
+
+        inserirDados(bitMasks, padrao[i], mascara);
     }
 
+    return bitMasks;
+}
+
+int shiftAndExato(char **texto, int tamanhoTexto, int tamanhoPadrao, HashMap *bitMasks) {
     
-    for (int i = 0; i < tamanhoPadrao; i++){
+    __int128_t matching = 0;
 
-        bitMasks->array[buscarChave(bitMasks,padrao[i])].valor |= ((__int128_t)(1) << i);
-    }
+    __int128_t alvo = (__int128_t)1 << (tamanhoPadrao - 1);
+    
 
-    //Shift-And exato
     for (int i = 0; i < tamanhoTexto; i++) {
 
-        indice = buscarChave(bitMasks,texto[i]);
+        matching = (matching << 1) | 1;
 
-        if(indice == -1){
+        __int128_t mascara = buscarMascara(bitMasks, texto[i]);
 
-            matching = (matching << 1) | 1;
-            matching &= (__int128_t)(0);          
-        }
-        else{
+        matching &= mascara;
 
-            matching = (matching << 1) | 1;         
-            matching &= bitMasks->array[indice].valor;
-        }
+        if (matching & alvo) {
 
-        if ((matching & ((__int128_t)(1) << (tamanhoPadrao - 1)))) {
-
-            liberarHashMap(bitMasks);
-            
             return i - tamanhoPadrao + 1;
         }
     }
 
-    liberarHashMap(bitMasks);
-    
     return -1;
 }

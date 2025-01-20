@@ -24,14 +24,16 @@ HashMap *iniciarHashMap(int totalDados);
 
 char *strdup(const char *s);
 
-int hashing(char *chave, int hashSize);
+int hashing(const char *chave, int hashSize);
 
 int inserirDados(HashMap *map, char *chave, __int128_t valor);
 
-int buscarChave(HashMap *map, char *chave);
+__int128_t buscarMascara(HashMap *map, char *chave);
 
 void liberarHashMap(HashMap *map);
 
-int shiftAndExato(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao);
+HashMap *criarBitMasks(char **padrao, int tamanhoPadrao);
+
+int shiftAndExato(char **texto, int tamanhoTexto, int tamanhoPadrao, HashMap *bitMasks);
 
 #endif

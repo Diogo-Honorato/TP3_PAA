@@ -48,14 +48,19 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
 
     case 4:
         
+        HashMap *bitMasks = NULL;
+
+        bitMasks = criarBitMasks(padrao,tamPadrao);
+
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = shiftAndExato(texto,padrao,tamTexto,tamPadrao);
+        resultado = shiftAndExato(texto,tamTexto,tamPadrao,bitMasks);
         
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
 
+        liberarHashMap(bitMasks);
         break;
         
     default:
