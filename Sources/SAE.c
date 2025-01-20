@@ -167,7 +167,7 @@ int shiftAndExato(char **texto, int tamanhoTexto, int tamanhoPadrao, HashMap *bi
 
     for (int i = 0; i < tamanhoTexto; i++) {
 
-        matching = (matching << 1) | 1;
+        matching = (matching >> (__int128_t)1) | (__int128_t)1;
 
         __int128_t mascara = buscarMascara(bitMasks, texto[i]);
 
