@@ -1,6 +1,7 @@
 #ifndef _SAE_H_
 #define _SAE_H_
 #include <stdbool.h>
+#define TAM_ALFABETO 98
 
 typedef struct Item{
 
