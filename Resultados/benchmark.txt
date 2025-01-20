@@ -1,0 +1,320 @@
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 1---
+
+Tempo em microssegundos:
+Tempo Usuario = 1510.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 1510.000 microssegundos
+Tempo gettimeofday = 1220.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.002 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.002 segundos
+Tempo gettimeofday = 0.001 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 2---
+
+Tempo em microssegundos:
+Tempo Usuario = 108.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 108.000 microssegundos
+Tempo gettimeofday = 108.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 3---
+
+Tempo em microssegundos:
+Tempo Usuario = 217.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 217.000 microssegundos
+Tempo gettimeofday = 216.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 4---
+
+Tempo em microssegundos:
+Tempo Usuario = 188.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 188.000 microssegundos
+Tempo gettimeofday = 187.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 5---
+
+Tempo em microssegundos:
+Tempo Usuario = 187.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 187.000 microssegundos
+Tempo gettimeofday = 186.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 6---
+
+Tempo em microssegundos:
+Tempo Usuario = 149.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 149.000 microssegundos
+Tempo gettimeofday = 148.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 7---
+
+Tempo em microssegundos:
+Tempo Usuario = 148.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 148.000 microssegundos
+Tempo gettimeofday = 147.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 8---
+
+Tempo em microssegundos:
+Tempo Usuario = 62.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 62.000 microssegundos
+Tempo gettimeofday = 60.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 9---
+
+Tempo em microssegundos:
+Tempo Usuario = 196.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 196.000 microssegundos
+Tempo gettimeofday = 195.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 10---
+
+Tempo em microssegundos:
+Tempo Usuario = 39.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 39.000 microssegundos
+Tempo gettimeofday = 37.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 11---
+
+Tempo em microssegundos:
+Tempo Usuario = 149.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 149.000 microssegundos
+Tempo gettimeofday = 148.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 12---
+
+Tempo em microssegundos:
+Tempo Usuario = 43.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 43.000 microssegundos
+Tempo gettimeofday = 43.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 13---
+
+Tempo em microssegundos:
+Tempo Usuario = 43.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 43.000 microssegundos
+Tempo gettimeofday = 44.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 14---
+
+Tempo em microssegundos:
+Tempo Usuario = 190.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 190.000 microssegundos
+Tempo gettimeofday = 190.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 15---
+
+Tempo em microssegundos:
+Tempo Usuario = 107.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 107.000 microssegundos
+Tempo gettimeofday = 107.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 16---
+
+Tempo em microssegundos:
+Tempo Usuario = 59.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 59.000 microssegundos
+Tempo gettimeofday = 58.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 17---
+
+Tempo em microssegundos:
+Tempo Usuario = 228.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 228.000 microssegundos
+Tempo gettimeofday = 227.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 18---
+
+Tempo em microssegundos:
+Tempo Usuario = 177.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 177.000 microssegundos
+Tempo gettimeofday = 176.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 19---
+
+Tempo em microssegundos:
+Tempo Usuario = 229.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 229.000 microssegundos
+Tempo gettimeofday = 228.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
+
+---Tempo de execucao do algoritmo Shift-And Exato, teste: 20---
+
+Tempo em microssegundos:
+Tempo Usuario = 207.000 microssegundos
+Tempo Sistema = 0.000 microssegundos
+Tempo rusage = 207.000 microssegundos
+Tempo gettimeofday = 206.000 microssegundos
+
+Tempo em segundos:
+Tempo Usuario = 0.000 segundos
+Tempo Sistema = 0.000 segundos
+Tempo rusage = 0.000 segundos
+Tempo gettimeofday = 0.000 segundos
+
+
