@@ -145,11 +145,11 @@ HashMap* criarBitMasks(char **padrao, int tamanhoPadrao) {
 
         if (mascara == 0) { 
 
-            mascara = (__int128_t)1 << i;
+            mascara = ((__int128_t)1 << i);
 
         } else {
 
-            mascara |= (__int128_t)1 << i;
+            mascara |= ((__int128_t)1 << i);
         }
 
         inserirDados(bitMasks, padrao[i], mascara);
