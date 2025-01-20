@@ -4,8 +4,6 @@
 #include <string.h>
 #include "../Headers/SAE.h"
 
-#define TAM_ALFABETO 98
-
 bool primo(int num){
 
     if (num <= 1){
