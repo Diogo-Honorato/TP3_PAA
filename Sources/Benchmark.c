@@ -18,8 +18,8 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
     double tempoUsuarioCompleto, tempoSistemaCompleto, tempoGetTimeofDay, tempoRuUsage;
 
     int resultado = -1;
-    
-    HashMap *bitMasks = NULL;
+
+    __int128_t **bitMasks;
 
     switch (algoritmo)
     {
@@ -50,7 +50,7 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
 
     case 4:
 
-        bitMasks = criarBitMasks(padrao,tamPadrao);
+        bitMasks = gerarBitMasks(padrao,tamPadrao);
 
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
@@ -60,7 +60,7 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
 
-        liberarHashMap(bitMasks);
+        liberarBitMasks(bitMasks);
         break;
         
     default:
