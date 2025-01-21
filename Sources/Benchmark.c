@@ -9,7 +9,7 @@
 #include "../Headers/Benchmark.h"
 #include "../Headers/GerenciarTempo.h"
 
-void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, int tamTexto, int tamPadrao)
+void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int tamTexto, int tamPadrao)
 {
     struct timeval tempoInicio, tempoFim, tempoDiferenca;
 
@@ -20,8 +20,7 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
     int resultado = -1;
 
     __int128_t *bitMasks;
-    char *textoConvertido;
-    char *padraoConvertido;
+    int *tabela;
 
     switch (algoritmo)
     {
@@ -39,34 +38,34 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
         break;
 
     case 2:
-    
+
+        tabela = preProcessamento(padrao, tamPadrao);
+
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = kmp(texto, padrao, tamTexto, tamPadrao);
+        resultado = kmp(texto, padrao, tamTexto, tamPadrao, tabela);
         
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
+
+        free(tabela);
 
         break;
 
     case 4:
 
-        textoConvertido = converterTexto(texto,tamTexto);
-
-        padraoConvertido = converterPadrao(padrao,tamPadrao);
-
-        bitMasks = gerarBitMasks(padraoConvertido,tamPadrao);
+        bitMasks = gerarBitMasks(padrao,tamPadrao);
 
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = shiftAndExato(textoConvertido,tamTexto,tamPadrao,bitMasks);
+        resultado = shiftAndExato(texto,tamTexto,tamPadrao,bitMasks);
         
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
 
-        liberarShiftAnd(textoConvertido,padraoConvertido,bitMasks);
+        liberarShiftAnd(bitMasks);
         break;
         
     default:

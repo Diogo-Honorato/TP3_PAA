@@ -2,6 +2,6 @@
 #define _BENCHMARK_H_
 
 
-void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, int tamTexto, int tamPadrao);
+void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int tamTexto, int tamPadrao);
 
 #endif

@@ -7,6 +7,8 @@ PlagiChecker *lerArquivo(FILE *fileInput)
 
     int tamTexto;
     int tamPadrao;
+    char *string = calloc(3, sizeof *string);
+
     PlagiChecker *plagiChecker = NULL;
 
     if (fscanf(fileInput, "%d %d ", &tamTexto, &tamPadrao) == 2)
@@ -20,29 +22,36 @@ PlagiChecker *lerArquivo(FILE *fileInput)
             for (int i = 0; i < tamTexto; i++)
             {
 
-                if (fscanf(fileInput, "%s", plagiChecker->texto[i]) == EOF)
+                if (fscanf(fileInput, "%s", string) == EOF)
                 {
 
                     liberarMemoria(plagiChecker);
+                    free(string);
                     return NULL;
                 }
+
+                plagiChecker->texto[i] = converterString(string);
             }
 
             for (int j = 0; j < tamPadrao; j++)
             {
 
-                if (fscanf(fileInput, "%s", plagiChecker->padrao[j]) == EOF)
+                if (fscanf(fileInput, "%s", string) == EOF)
                 {
 
                     liberarMemoria(plagiChecker);
+                    free(string);
                     return NULL;
                 }
+
+                plagiChecker->padrao[j] = converterString(string);
             }
         }
         else
         {
 
             free(plagiChecker);
+            free(string);
             return NULL;
         }
     }
@@ -50,9 +59,11 @@ PlagiChecker *lerArquivo(FILE *fileInput)
     {
 
         free(plagiChecker);
+        free(string);
         return NULL;
     }
 
+    free(string);
     return plagiChecker;
 }
 

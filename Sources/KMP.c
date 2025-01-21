@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../Headers/KMP.h"
 
-int kmp(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
+int kmp(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao, int *tabela)
 {
     if (tamanhoTexto < tamanhoPadrao)
     {
@@ -11,14 +11,12 @@ int kmp(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
         return -1;
     }
 
-    int *tabela = preProcessamento(padrao, tamanhoPadrao);
-
     int i = 0;
     int j = 0;
 
     while (i < tamanhoTexto && j < tamanhoPadrao)
     {
-        if (!strcmp(texto[i], padrao[j]))
+        if (texto[i] == padrao[j])
         {
 
             i++;
@@ -37,17 +35,13 @@ int kmp(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
 
     if (j == tamanhoPadrao)
     {
-
-        free(tabela);
-
         return (i - j);
     }
 
-    free(tabela);
     return -1;
 }
 
-int *preProcessamento(char **padrao, int tamanhoPadrao)
+int *preProcessamento(char *padrao, int tamanhoPadrao)
 {
 
     int *tabela = calloc(tamanhoPadrao, sizeof *tabela);
@@ -59,7 +53,7 @@ int *preProcessamento(char **padrao, int tamanhoPadrao)
     while (j < tamanhoPadrao)
     {
 
-        if (!strcmp(padrao[indice], padrao[j]))
+        if (padrao[indice] == padrao[j])
         {
 
             indice++;

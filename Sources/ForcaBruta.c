@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../Headers/ForcaBruta.h"
 
-int forcaBruta(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
+int forcaBruta(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao)
 {
 
     int j, k;
@@ -19,7 +19,7 @@ int forcaBruta(char **texto, char **padrao, int tamanhoTexto, int tamanhoPadrao)
         k = i;
         j = 0;
 
-        while (j < tamanhoPadrao && strcmp(texto[k], padrao[j]) == 0)
+        while (j < tamanhoPadrao && texto[k] == padrao[j])
         {
             j = j + 1;
             k = k + 1;

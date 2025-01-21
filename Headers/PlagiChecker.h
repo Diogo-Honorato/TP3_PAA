@@ -5,14 +5,16 @@ typedef struct PlagiChecker{
 
 int tamanhoTexto;
 int tamanhoPadrao;
-char **texto;
-char **padrao;
+char *texto;
+char *padrao;
 
 }PlagiChecker;
 
 PlagiChecker *iniciarPlagiChecker(int tamanhoTexto, int tamanhoPadrao);
 
 void liberarMemoria(PlagiChecker *plagiChecker);
+
+char converterString(char *string);
 
 void imprimirPlagiChecker(PlagiChecker *plagiChecker);
 
