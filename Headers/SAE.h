@@ -1,14 +1,16 @@
 #ifndef _SAE_H_
 #define _SAE_H_
 #include <stdbool.h>
-#define TAM_ALFABETO 7
+#define TAM_ALFABETO 21
 
-__int128_t **iniciarBitMasks();
+char *converterTexto(char **texto, int tamTexto);
 
-void liberarBitMasks(__int128_t **bitMasks);
+char *converterPadrao(char **padrao, int tamPadrao);
 
-__int128_t **gerarBitMasks(char **padrao, int tamanhoPadrao);
+__int128_t *gerarBitMasks(char *padrao, int tamPadrao);
 
-int shiftAndExato(char **texto, int tamanhoTexto, int tamanhoPadrao, __int128_t **bitMasks);
+void liberarShiftAnd(char *texto, char *padrao, __int128_t *bitMasks);
+
+int shiftAndExato(char *texto, int tamanhoTexto, int tamanhoPadrao, __int128_t *bitMasks);
 
 #endif

@@ -19,7 +19,9 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
 
     int resultado = -1;
 
-    __int128_t **bitMasks;
+    __int128_t *bitMasks;
+    char *textoConvertido;
+    char *padraoConvertido;
 
     switch (algoritmo)
     {
@@ -50,17 +52,21 @@ void benchmark(const int algoritmo, int numTeste, char **texto, char **padrao, i
 
     case 4:
 
-        bitMasks = gerarBitMasks(padrao,tamPadrao);
+        textoConvertido = converterTexto(texto,tamTexto);
+
+        padraoConvertido = converterPadrao(padrao,tamPadrao);
+
+        bitMasks = gerarBitMasks(padraoConvertido,tamPadrao);
 
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = shiftAndExato(texto,tamTexto,tamPadrao,bitMasks);
+        resultado = shiftAndExato(textoConvertido,tamTexto,tamPadrao,bitMasks);
         
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
 
-        liberarBitMasks(bitMasks);
+        liberarShiftAnd(textoConvertido,padraoConvertido,bitMasks);
         break;
         
     default:
