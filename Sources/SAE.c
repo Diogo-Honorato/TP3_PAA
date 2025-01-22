@@ -28,12 +28,10 @@ int shiftAndExato(char *texto, int tamanhoTexto, int tamanhoPadrao, __int128_t *
     __int128_t matching = 0;
     
     for (int i = 0; i < tamanhoTexto; i++) {
-        
-        matching = (matching << 1) | (__int128_t)1;
 
-        matching &= bitMasks[texto[i] - 'A'];
+        matching = (((matching << 1) | (__int128_t)1) & bitMasks[texto[i] - 'A']);
 
-         if (matching & ((__int128_t)1 << (tamanhoPadrao - 1))) {
+        if (matching & ((__int128_t)1 << (tamanhoPadrao - 1))) {
             
             return i - tamanhoPadrao + 1; 
         }
