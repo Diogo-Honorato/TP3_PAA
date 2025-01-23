@@ -22,6 +22,12 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
     __int128_t *bitMasks;
     int *tabela;
 
+    if(tamTexto < tamPadrao){
+        
+        printf("\nTexto menor que o padrao.\n\n");
+        return;
+    }
+
     switch (algoritmo)
     {
     case 1:

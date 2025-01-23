@@ -5,12 +5,7 @@
 
 int kmp(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao, int *tabela)
 {
-    if (tamanhoTexto < tamanhoPadrao)
-    {
-
-        return -1;
-    }
-
+    
     int i = 0;
     int j = 0;
 

@@ -8,11 +8,6 @@ int forcaBruta(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao)
 
     int j, k;
 
-    if (tamanhoTexto < tamanhoPadrao)
-    {
-        return -1;
-    }
-
     for (int i = 0; i <= (tamanhoTexto - tamanhoPadrao); i++)
     {
 

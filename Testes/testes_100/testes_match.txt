@@ -1,5 +1,5 @@
-100 12
-G A Fb B D Db A F# Bb Fb D Bb A C B Bb A# F Fb F A A# A# Bb Db A G# F E Gb D# Gb A# F B F C Ab D B C# C# G E G D# Cb Ab Ab G# C# Fb D# Eb A F B E D# D Bb C Gb Eb Gb D Cb F D G Gb E G# Db G A# A# D Fb C A# F# G G# Db G# B D# Ab G# Db Eb F# G# D# Gb Bb Bb E D#
+7 12
+G A Fb B D Db A
 D# Gb A# F B F C Ab D B C# C#
 100 12
 A# G# Gb Db Eb Ab Gb G Cb F B Cb Cb G A F# E C# A# G F A# Db D G# A# C E Bb Db Ab E F# B D# Fb Bb C# Db A# F Db Fb Db F F# F# D Eb D# G C# Cb C Gb D F# Bb C# Ab G F# D A G# Ab D A# C# F Bb Gb D Fb D Fb Fb Gb Db C# D D# G# G C C# D# F# B A C E C# F C D# A# B D# Cb
