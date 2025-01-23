@@ -12,12 +12,11 @@ void liberarShiftAnd(__int128_t *bitMasks){
 __int128_t *gerarBitMasks(char *padrao, int tamPadrao){
 
     __int128_t* bitMasks = calloc(TAM_ALFABETO, sizeof *bitMasks);
-
-    for (int i = 0; i < tamPadrao; i++) {
     
-        __int128_t mascara = (__int128_t)1 << i;
-
-        bitMasks[padrao[i] - 'A'] |= mascara;
+    for (int i = 0; i < tamPadrao; i++) {
+        
+        //'A' = 65, na tabela ascii
+        bitMasks[padrao[i] - 65] |= (((__int128_t)1) << (tamPadrao - i - 1));
     }
 
     return bitMasks;
@@ -25,17 +24,18 @@ __int128_t *gerarBitMasks(char *padrao, int tamPadrao){
 
 int shiftAndExato(char *texto, int tamanhoTexto, int tamanhoPadrao, __int128_t *bitMasks) {
     
-    __int128_t matching = 0;
+    //R representa a mascara de bits do caracter atual selecionado na bitMasks .
+    __int128_t R = 0;
     
     for (int i = 0; i < tamanhoTexto; i++) {
 
-        matching = (((matching << 1) | (__int128_t)1) & bitMasks[texto[i] - 'A']);
+        R = ((R >> 1) | (((__int128_t)1) << (tamanhoPadrao - 1))) & bitMasks[texto[i] - 65];
 
-        if (matching & ((__int128_t)1 << (tamanhoPadrao - 1))) {
+        if ((R & 1) != 0) {
             
             return i - tamanhoPadrao + 1; 
         }
     }
-    
+
     return -1;
 }
