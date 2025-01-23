@@ -16,6 +16,3 @@
 
 -Para limpar os arquivos Objetos, Resultados e o executável digite o comando 'make clean', mas será necessario compilar novamente com os 
  comandos ensinados anteriormente.
-
--Será disponibilizado também um diretório com o nome "Testes", onde conterá subdiretórios com diferentes tamanhos de cadeia de caracteres
- e dentro deles haverá 4 tipos de arquivos .txt que por sua vez conterá 20 testes cada.
