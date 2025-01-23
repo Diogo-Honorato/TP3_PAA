@@ -137,3 +137,15 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste
 
     fclose(fileOutput);
 }
+
+void saidaDadosGrafico(const char *CAMINHO,double GetTimeOfDay,double Rusage){
+
+
+    FILE *file;
+
+    file = fopen(CAMINHO,"a");
+
+    fprintf(file, "%.2lf %.2lf\n",GetTimeOfDay,Rusage);
+
+    fclose(file);
+}

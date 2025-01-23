@@ -9,4 +9,6 @@ void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio);
 
 void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste,double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay);
 
+void saidaDadosGrafico(const char *CAMINHO,double GetTimeOfDay,double Rusage);
+
 #endif

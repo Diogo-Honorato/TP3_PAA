@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
     printf("\nArquivo de resultados dos testes gerado com sucesso no caminho: %s\n",CAMINHO_ARQUIVO_SAIDA);
     printf("\nArquivo de benchmark gerado com sucesso no caminho: %s\n\n",CAMINHO_ARQUIVO_BENCHMARK);
     fclose(fileInput);
+    
 
     return 0;
 }
