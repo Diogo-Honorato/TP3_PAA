@@ -3,36 +3,35 @@
 #include <string.h>
 #include "../Headers/KMP.h"
 
-int kmp(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao, int *tabela)
+int kmp(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao, int *tabela, int *numComp)
 {
     
     int i = 0;
     int j = 0;
-    int comp = 0;
     while (i < tamanhoTexto && j < tamanhoPadrao)
     {
         if (texto[i] == padrao[j])
         {
             i++;
             j++;
-            comp++;
+            *numComp = *numComp + 1;
         }
         else if (j > 0)
         {
             j = tabela[j - 1];
-            comp++;
+            *numComp = *numComp + 1;
         }
         else
         {
 
             i++;
-            comp++;
+            *numComp = *numComp + 1;
         }
     }
 
     if (j == tamanhoPadrao)
     {
-        return comp;
+        return (i - j);
     }
 
     return -1;

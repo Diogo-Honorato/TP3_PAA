@@ -88,7 +88,7 @@ void saidaArquivoResultado(const char *CAMINHO_ARQUIVO, int indiceInicio)
     fclose(fileOutput);
 }
 
-void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste,double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay)
+void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int *numComp, int numTeste,double tempoUsuario, double tempoSistema, double tempoRuUsage, double tempoGetTimeofDay)
 {
 
     FILE *fileOutput;
@@ -122,7 +122,7 @@ void saidaArquivoTempos(const char *CAMINHO_ARQUIVO, int algoritmo, int numTeste
         break;
     }
 
-    
+    fprintf(fileOutput, "\nTotal de comparações realizadas pelo algoritmo: %d\n",*numComp);
     fprintf(fileOutput, "\nTempo em microssegundos:\n");
     fprintf(fileOutput, "Tempo Usuario = %.3f microssegundos\n", tempoUsuario);
     fprintf(fileOutput, "Tempo Sistema = %.3f microssegundos\n", tempoSistema);

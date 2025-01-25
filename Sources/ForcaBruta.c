@@ -3,11 +3,11 @@
 #include <string.h>
 #include "../Headers/ForcaBruta.h"
 
-int forcaBruta(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao)
+int forcaBruta(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao, int *numComp)
 {
 
     int j, k;
-    int comp = 0;
+
     for (int i = 0; i <= (tamanhoTexto - tamanhoPadrao); i++)
     {
 
@@ -18,14 +18,14 @@ int forcaBruta(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao)
         {
             j = j + 1;
             k = k + 1;
-            comp++;
+            *numComp = *numComp + 1;
         }
 
         if (j == tamanhoPadrao)
         {
-            return comp;
+            return i;
         }
-        comp++;
+        *numComp = *numComp + 1;
     }
 
     return -1;

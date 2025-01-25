@@ -18,6 +18,7 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
     double tempoUsuarioCompleto, tempoSistemaCompleto, tempoGetTimeofDay, tempoRuUsage;
 
     int resultado = -1;
+    int numComp = 0;
 
     __int128_t *bitMasks;
     int *tabela;
@@ -35,7 +36,7 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = forcaBruta(texto, padrao, tamTexto, tamPadrao);
+        resultado = forcaBruta(texto, padrao, tamTexto, tamPadrao, &numComp);
 
         // Obtém o tempo do fim da execução.
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
@@ -50,7 +51,7 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = kmp(texto, padrao, tamTexto, tamPadrao, tabela);
+        resultado = kmp(texto, padrao, tamTexto, tamPadrao, tabela, &numComp);
         
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
@@ -66,7 +67,7 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
         getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
         gettimeofday(&tempoInicio, NULL);
 
-        resultado = shiftAndExato(texto,tamTexto,tamPadrao,bitMasks);
+        resultado = shiftAndExato(texto,tamTexto,tamPadrao,bitMasks, &numComp);
         
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
@@ -86,9 +87,7 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
     tempoSistemaCompleto = tempoSistemaFim - tempoSistemaInicio;
     tempoRuUsage = tempoUsuarioCompleto + tempoSistemaCompleto;
 
-    saidaArquivoTempos("Resultados/benchmark.txt",algoritmo,numTeste,tempoUsuarioCompleto,tempoSistemaCompleto,tempoRuUsage,tempoGetTimeofDay);
+    saidaArquivoTempos("Resultados/benchmark.txt",algoritmo,&numComp,numTeste,tempoUsuarioCompleto,tempoSistemaCompleto,tempoRuUsage,tempoGetTimeofDay);
 
     saidaArquivoResultado("Resultados/saida.txt", resultado);
-
-    saidaDadosGrafico("Resultados/Dados.txt",tempoGetTimeofDay,resultado);
 }
