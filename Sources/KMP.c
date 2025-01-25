@@ -8,29 +8,31 @@ int kmp(char *texto, char *padrao, int tamanhoTexto, int tamanhoPadrao, int *tab
     
     int i = 0;
     int j = 0;
-
+    int comp = 0;
     while (i < tamanhoTexto && j < tamanhoPadrao)
     {
         if (texto[i] == padrao[j])
         {
-
             i++;
             j++;
+            comp++;
         }
         else if (j > 0)
         {
             j = tabela[j - 1];
+            comp++;
         }
         else
         {
 
             i++;
+            comp++;
         }
     }
 
     if (j == tamanhoPadrao)
     {
-        return (i - j);
+        return comp;
     }
 
     return -1;
