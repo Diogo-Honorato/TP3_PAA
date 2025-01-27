@@ -3,17 +3,8 @@
 
 #define MaxTamAlfabeto 256
 
-void BMH(char T[], int n, char P[], int m) {
+void BMH(char T[], int n, char P[], int m, int *d) {
     int i, j, k;
-    int d[MaxTamAlfabeto];
-
-    // Pré-processamento do padrão
-    for (j = 0; j < MaxTamAlfabeto; j++) {
-        d[j] = m;
-    }
-    for (j = 0; j < m - 1; j++) {
-        d[(unsigned char)P[j]] = m - 1 - j;
-    }
 
     i = m;
     // Pesquisa
@@ -25,19 +16,33 @@ void BMH(char T[], int n, char P[], int m) {
             j--;
         }
         if (j < 0) {
-            printf("Casamento na posição: %d\n", k + 1);
+            printf("Casamento na posição: %d\n", k);
         }
         i += d[(unsigned char)T[i - 1]];
     }
 }
 
-int main() {
-    char T[] = "exemplo de texto para busca"; // Texto principal
-    char P[] = "texto"; // Padrão a ser buscado
-    int n = strlen(T);
-    int m = strlen(P);
+int *processamento(char *padrao, int tamPadrao){
+    int i, j, k;
+    int d[MaxTamAlfabeto];
 
-    BMH(T, n, P, m);
+    // Pré-processamento do padrão
+    for (j = 0; j < MaxTamAlfabeto; j++) {
+        d[j] = tamPadrao;
+    }
+    for (j = 0; j < tamPadrao - 1; j++) {
+        d[padrao[j]] = tamPadrao - 1 - j;
+    }
 
-    return 0;
 }
+
+// int main() {
+//     char T[] = "Diogo é muito gay"; // Texto principal
+//     char P[] = "Diogo"; // Padrão a ser buscado
+//     int n = strlen(T);
+//     int m = strlen(P);
+
+//     BMH(T, n, P, m);
+
+//     return 0;
+// }
