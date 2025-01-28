@@ -31,7 +31,7 @@ int *processamento(char *padrao, int tamPadrao){
         d[j] = tamPadrao;
     }
     for (j = 0; j < tamPadrao - 1; j++) {
-        d[padrao[j]] = tamPadrao - 1 - j;
+        d[(unsigned char)padrao[j]] = tamPadrao - 1 - j;
     }
 
 }

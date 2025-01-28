@@ -1,7 +1,7 @@
 #ifndef _SAE_H_
 #define _SAE_H_
 #include <stdbool.h>
-#define TAM_ALFABETO 21
+#define TAM_ALFABETO 127
 
 __int128_t *gerarBitMasks(char *padrao, int tamPadrao);
 

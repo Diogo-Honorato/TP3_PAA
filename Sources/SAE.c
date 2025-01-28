@@ -15,8 +15,7 @@ __int128_t *gerarBitMasks(char *padrao, int tamPadrao){
     
     for (int i = 0; i < tamPadrao; i++) {
         
-        //'A' = 65, na tabela ascii
-        bitMasks[padrao[i] - 65] |= (((__int128_t)1) << (tamPadrao - i - 1));
+        bitMasks[(unsigned char)padrao[i]] |= (((__int128_t)1) << (tamPadrao - i - 1));
     }
 
     return bitMasks;
@@ -29,7 +28,7 @@ int shiftAndExato(char *texto, int tamanhoTexto, int tamanhoPadrao, __int128_t *
 
     for (int i = 0; i < tamanhoTexto; i++) {
 
-        R = ((R >> 1) | (((__int128_t)1) << (tamanhoPadrao - 1))) & bitMasks[texto[i] - 65];
+        R = ((R >> 1) | (((__int128_t)1) << (tamanhoPadrao - 1))) & bitMasks[(unsigned char)texto[i]];
 
         if ((R & 1) != 0) {
             *numComp = *numComp + 1;
