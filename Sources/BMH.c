@@ -23,10 +23,11 @@ int BMH(char *texto, int tamTexto, char *padrao, int tamPadrao, int *tabela, int
         i += tabela[(unsigned char)texto[i - 1]];
         *numComp = *numComp + 1;
     }
+    return -1;
 }
 
 int *processamento(char *padrao, int tamPadrao){
-    int i, j, k;
+    int j;
     int *tabela = malloc(MaxTamAlfabeto * sizeof *tabela);
 
     // Pré-processamento do padrão
@@ -37,8 +38,4 @@ int *processamento(char *padrao, int tamPadrao){
         tabela[(unsigned char)padrao[j]] = tamPadrao - 1 - j;
     }
     return tabela;
-}
-
-void clean(int *tabela){
-    free(tabela);
 }

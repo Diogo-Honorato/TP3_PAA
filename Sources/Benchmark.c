@@ -5,6 +5,7 @@
 #include "../Headers/ArquivoIO.h"
 #include "../Headers/ForcaBruta.h"
 #include "../Headers/KMP.h"
+#include "../Headers/BMH.h"
 #include "../Headers/SAE.h"
 #include "../Headers/Benchmark.h"
 #include "../Headers/GerenciarTempo.h"
@@ -58,6 +59,21 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
 
         free(tabela);
 
+        break;
+
+    case 3:
+    
+        tabela = processamento(padrao, tamPadrao);
+
+        getUsageNow(&tempoUsuarioInicio, &tempoSistemaInicio);
+        gettimeofday(&tempoInicio, NULL);
+
+        resultado = BMH(texto, tamTexto, padrao, tamPadrao, tabela, &numComp);
+        
+        getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
+        gettimeofday(&tempoFim, NULL);
+
+        free(tabela);
         break;
 
     case 4:
