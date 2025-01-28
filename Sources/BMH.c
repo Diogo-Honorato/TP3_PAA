@@ -12,7 +12,7 @@ int BMH(char *texto, int tamTexto, char *padrao, int tamPadrao, int *tabela, int
     while (i <= tamTexto) {
         k = i;
         j = tamPadrao - 1;
-        while (texto[k - 1] == padrao[j] && j >= 0) {
+        while (j >= 0 && texto[k - 1] == padrao[j]) {
             k--;
             j--;
             *numComp = *numComp + 1;
