@@ -42,19 +42,3 @@ int *processamento(char *padrao, int tamPadrao){
 void clean(int *tabela){
     free(tabela);
 }
-
-int main() {
-    int num = 0;
-    int *tabela;
-    char texto[] = "Fuck this shit"; // Texto principal
-    char P[] = "this"; // Padrão a ser buscado
-    int n = strlen(texto);
-    int m = strlen(P);
-
-    tabela = processamento(P, m);
-    int qualquer = BMH(texto, n, P, m, tabela, &num);
-
-    printf("Qualquer = %d, num = %d\n", qualquer, num);
-
-    return 0;
-}
