@@ -1,48 +1,60 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-#define MaxTamAlfabeto 256
+#define MaxTamAlfabeto 127
 
-void BMH(char T[], int n, char P[], int m, int *d) {
+int BMH(char *texto, int tamTexto, char *padrao, int tamPadrao, int *tabela, int *numComp) {
     int i, j, k;
 
-    i = m;
+    i = tamPadrao;
     // Pesquisa
-    while (i <= n) {
+    while (i <= tamTexto) {
         k = i;
-        j = m - 1;
-        while (T[k - 1] == P[j] && j >= 0) {
+        j = tamPadrao - 1;
+        while (texto[k - 1] == padrao[j] && j >= 0) {
             k--;
             j--;
+            *numComp = *numComp + 1;
         }
         if (j < 0) {
-            printf("Casamento na posição: %d\n", k);
+            return k;
         }
-        i += d[(unsigned char)T[i - 1]];
+        i += tabela[(unsigned char)texto[i - 1]];
+        *numComp = *numComp + 1;
     }
 }
 
 int *processamento(char *padrao, int tamPadrao){
     int i, j, k;
-    int d[MaxTamAlfabeto];
+    int *tabela = malloc(MaxTamAlfabeto * sizeof *tabela);
 
     // Pré-processamento do padrão
     for (j = 0; j < MaxTamAlfabeto; j++) {
-        d[j] = tamPadrao;
+        tabela[j] = tamPadrao;
     }
     for (j = 0; j < tamPadrao - 1; j++) {
-        d[(unsigned char)padrao[j]] = tamPadrao - 1 - j;
+        tabela[(unsigned char)padrao[j]] = tamPadrao - 1 - j;
     }
-
+    return tabela;
 }
 
-// int main() {
-//     char T[] = "Diogo é muito gay"; // Texto principal
-//     char P[] = "Diogo"; // Padrão a ser buscado
-//     int n = strlen(T);
-//     int m = strlen(P);
+void clean(int *tabela){
+    free(tabela);
+}
 
-//     BMH(T, n, P, m);
+int main() {
+    int num = 0;
+    int *tabela;
+    char texto[] = "Fuck this shit"; // Texto principal
+    char P[] = "this"; // Padrão a ser buscado
+    int n = strlen(texto);
+    int m = strlen(P);
 
-//     return 0;
-// }
+    tabela = processamento(P, m);
+    int qualquer = BMH(texto, n, P, m, tabela, &num);
+
+    printf("Qualquer = %d, num = %d\n", qualquer, num);
+
+    return 0;
+}
