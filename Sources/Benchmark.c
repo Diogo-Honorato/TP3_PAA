@@ -106,4 +106,5 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
     saidaArquivoTempos("Resultados/benchmark.txt",algoritmo,&numComp,numTeste,tempoUsuarioCompleto,tempoSistemaCompleto,tempoRuUsage,tempoGetTimeofDay);
 
     saidaArquivoResultado("Resultados/saida.txt", resultado);
+    saidaDadosGrafico("Graficos/Shift-And.txt",tempoGetTimeofDay,numComp);
 }

@@ -2,17 +2,21 @@
 library(ggplot2)
 library(dplyr)
 
-# Definir uma função para ler os dados e plotar os gráficos
-plot_comparisons <- function(file_paths, algorithm_names) {
-  # Verificar se o número de arquivos e nomes de algoritmos correspondem
+# Função para remover outliers (valores muito acima da média)
+remove_outliers <- function(data, column, threshold = 2) {
+  mean_val <- mean(data[[column]])
+  sd_val <- sd(data[[column]])
+  data %>% filter(data[[column]] <= (mean_val + threshold * sd_val))  # Remove valores muito altos
+}
+
+# Função para gerar gráficos
+plot_time_vs_comparisons <- function(file_paths, algorithm_names) {
   if (length(file_paths) != length(algorithm_names)) {
     stop("A quantidade de arquivos deve ser igual à quantidade de nomes de algoritmos.")
   }
 
-  # Criar um data frame vazio para armazenar os dados combinados
   combined_data <- data.frame(Comparisons = numeric(), Time = numeric(), Algorithm = character())
 
-  # Ler cada arquivo e adicionar ao data frame combinado
   for (i in seq_along(file_paths)) {
     data <- read.table(file_paths[i], header = TRUE)
     colnames(data) <- c("Comparisons", "Time")
@@ -20,34 +24,59 @@ plot_comparisons <- function(file_paths, algorithm_names) {
     combined_data <- rbind(combined_data, data)
   }
 
-  # Calcular a média de comparações por algoritmo e arredondar para inteiro
-  avg_comparisons <- combined_data %>%
-    group_by(Algorithm) %>%
-    summarise(AverageComparisons = round(mean(Comparisons), 0)) %>%  # Arredonda para inteiro
-    arrange(AverageComparisons)  # Ordena de menor para maior
+  regression_color <- "black"
 
-  # Título com quebra de linha
-  title_text <- "Média de Comparações por Algoritmo\n(texto: 1000 caracteres, padrão: 128 caracteres)"
+  for (algo in unique(combined_data$Algorithm)) {
+    algo_data <- subset(combined_data, Algorithm == algo)
+    
+    # Remover outliers ANTES de fazer o gráfico
+    algo_data_filtered <- remove_outliers(algo_data, "Time")
 
-  # Gráfico de barras para a média de Comparações por Algoritmo
-  plot_comparisons <- ggplot(avg_comparisons, aes(x = reorder(Algorithm, AverageComparisons), y = AverageComparisons, fill = Algorithm)) +
-    geom_bar(stat = "identity", show.legend = FALSE) +
-    geom_text(aes(label = AverageComparisons), vjust = -0.5, hjust = 0.5) +  # Centraliza o texto
-    labs(title = title_text, x = "Algoritmo", y = "Média de Comparações") +
+    plot_individual <- ggplot(algo_data_filtered, aes(x = Comparisons, y = Time)) +
+      geom_point(aes(color = "Teste"), size = 3) +  # Apenas pontos válidos
+      geom_smooth(method = "lm", se = TRUE, color = regression_color, linetype = "dashed", aes(color = "Regressão")) +  
+      scale_color_manual(values = c("Teste" = "blue", "Regressão" = "black")) +  
+      labs(
+        title = paste("Relação entre Comparações e Tempo -", algo),
+        x = "Número de Comparações",
+        y = "Tempo (s)",
+        color = "Legenda"
+      ) +
+      theme_minimal() +
+      theme(
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "right"
+      )
+    
+    ggsave(paste0("time_vs_comparisons_", algo, ".png"), plot_individual, width = 8, height = 6)
+    print(plot_individual)
+  }
+
+  # Remover outliers do gráfico combinado também
+  combined_data_filtered <- remove_outliers(combined_data, "Time")
+
+  plot_combined <- ggplot(combined_data_filtered, aes(x = Comparisons, y = Time)) +
+    geom_point(aes(color = "Teste"), size = 3) +  
+    geom_smooth(method = "lm", se = TRUE, linetype = "dashed", aes(color = Algorithm)) +  
+    scale_color_manual(values = c("Teste" = "blue", "Força_Bruta" = "red", "KMP" = "green", "Shift-And" = "purple", "BMH" = "orange")) +
+    labs(
+      title = "Relação entre Comparações e Tempo - Todos os Algoritmos",
+      x = "Número de Comparações",
+      y = "Tempo (s)",
+      color = "Legenda"
+    ) +
     theme_minimal() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),  # Ajusta o texto do eixo x
-          plot.title = element_text(hjust = 0.5, size = 15))  # Centraliza o título e ajusta o tamanho da fonte
-
-  # Salvar a imagem como .png
-  ggsave("comparisons_by_algorithm.png", plot_comparisons, width = 8, height = 6)
-
-  # Mostrar o gráfico
-  print(plot_comparisons)  # Exibe o gráfico de barras para comparações
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "right"
+    )
+  
+  ggsave("time_vs_comparisons_all_algorithms.png", plot_combined, width = 8, height = 6)
+  print(plot_combined)
 }
 
 # Exemplo de uso:
-file_paths <- c("Força_Bruta.txt", "KMP.txt", "BMH.txt", "Shift-And.txt")
-algorithm_names <- c("Força_Bruta", "KMP", "BMH", "Shift-And")
+file_paths <- c("Força_Bruta.txt", "KMP.txt", "Shift-And.txt", "BMH.txt")
+algorithm_names <- c("Força_Bruta", "KMP", "Shift-And", "BMH")
 
-# Chamar a função para plotar o gráfico de comparações
-plot_comparisons(file_paths, algorithm_names)
+plot_time_vs_comparisons(file_paths, algorithm_names)

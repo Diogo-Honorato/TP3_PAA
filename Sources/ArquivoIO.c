@@ -144,8 +144,8 @@ void saidaDadosGrafico(const char *CAMINHO,double GetTimeOfDay,int numCompar){
     FILE *file;
 
     file = fopen(CAMINHO,"a");
-
-    fprintf(file, "%d %.2lf\n",numCompar,GetTimeOfDay);
+    
+    fprintf(file, "%d            %.2lf\n",numCompar,GetTimeOfDay);
 
     fclose(file);
 }
