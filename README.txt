@@ -12,7 +12,8 @@
 
  exemplo: ./tp3 entrada.txt 1 -> para usar o algoritmo força bruta.
 
--Irá ser gerado dois arquivos .txt dentro do diretório "Resultados" com os resultados e seus respectivos tempos de execução de cada teste.
+-Irá ser gerado dois arquivos .txt dentro do diretório "Resultados" com os resultados e seus respectivos tempos de execução e número
+ de comparações realizadas em cada teste.
 
 -Para limpar os arquivos Objetos, Resultados e o executável digite o comando 'make clean', mas será necessario compilar novamente com os 
  comandos ensinados anteriormente.
