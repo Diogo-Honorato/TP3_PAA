@@ -7,7 +7,7 @@
 
  1. Força Bruta
  2. KMP
- 3. Boyer-Moore (BMH)
+ 3. Boyer-Moore-Horspool (BMH)
  4. ShiftAndExato
 
  exemplo: ./tp3 entrada.txt 1 -> para usar o algoritmo força bruta.

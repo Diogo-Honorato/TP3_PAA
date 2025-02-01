@@ -49,23 +49,9 @@ obj_dirs:
 result_dirs:
 	@mkdir -p $(RESULT_DIR)
 
-# Para rodar com valgrind e verificar vazamentos de memória
-leak_1: $(EXECUTABLE)
-	@valgrind --leak-check=full ./$(EXECUTABLE) $(ARG0) $(ARG1)
-
-leak_2: $(EXECUTABLE)
-	@valgrind --leak-check=full ./$(EXECUTABLE) $(ARG0) $(ARG2)
-
-leak_3: $(EXECUTABLE)
-	@valgrind --leak-check=full ./$(EXECUTABLE) $(ARG0) $(ARG3)
-
-leak_4: $(EXECUTABLE)
-	@valgrind --leak-check=full ./$(EXECUTABLE) $(ARG0) $(ARG4)
-
-
 # Limpar arquivos objeto e o executável
 clean:
 	@rm -rf $(OBJ_DIR) $(EXECUTABLE) $(RESULT_DIR)
 
 
-.PHONY: all leak_1 leak_2 leak_3 leak_4 clean
+.PHONY: all clean

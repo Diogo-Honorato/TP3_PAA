@@ -4,11 +4,6 @@
 #include <string.h>
 #include "../Headers/SAE.h"
 
-void liberarShiftAnd(__int128_t *bitMasks){
-
-    free(bitMasks);
-}
-
 __int128_t *gerarBitMasks(char *padrao, int tamPadrao){
 
     __int128_t* bitMasks = calloc(TAM_ALFABETO, sizeof *bitMasks);
@@ -23,7 +18,7 @@ __int128_t *gerarBitMasks(char *padrao, int tamPadrao){
 
 int shiftAndExato(char *texto, int tamanhoTexto, int tamanhoPadrao, __int128_t *bitMasks, int *numComp) {
     
-    //R representa a mascara de bits do caracter atual selecionado na bitMasks .
+    //R representa a mascara de bits do caracter atual selecionado na bitMasks.
     __int128_t R = 0;
 
     for (int i = 0; i < tamanhoTexto; i++) {

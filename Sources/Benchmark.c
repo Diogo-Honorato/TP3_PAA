@@ -1,4 +1,4 @@
-// local onde sera feito o calculo do tempo e o teste de cada elemento da entrada.
+// local onde sera feito o calculo do tempo o numero comparações e o teste de cada elemento da entrada.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +19,8 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
     double tempoUsuarioCompleto, tempoSistemaCompleto, tempoGetTimeofDay, tempoRuUsage;
 
     int resultado = -1;
+
+    //variavel responsavel por contar o numero de comparções que o algoritmo realizou.
     int numComp = 0;
 
     __int128_t *bitMasks;
@@ -88,7 +90,7 @@ void benchmark(const int algoritmo, int numTeste, char *texto, char *padrao, int
         getUsageNow(&tempoUsuarioFim, &tempoSistemaFim);
         gettimeofday(&tempoFim, NULL);
 
-        liberarShiftAnd(bitMasks);
+        free(bitMasks);
         break;
         
     default:

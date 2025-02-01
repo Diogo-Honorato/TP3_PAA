@@ -26,6 +26,11 @@ void liberarMemoria(PlagiChecker *plagiChecker)
 
 char converterString(char *string){
 
+    /*
+        converte uma nota com alterações cromáticas '#' ou 'b' para o seu 
+        equivalente no alfabeto exemplo: A# = 'H' ,  B# = I , etc...
+    */
+
     switch (string[1])
     {
     case '#':
